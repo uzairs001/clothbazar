@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ClothBazar.Web", "ClothBazar.Web\ClothBazar.Web.vbproj", "{1C7CBD33-1C69-45A2-97C9-C7766496C4E7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Web", "ClothBazar.Web\ClothBazar.Web.csproj", "{972E78C4-B7F1-40C7-95B9-B3AC555C9DCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Entity", "ClothBazar.Entity\ClothBazar.Entity.csproj", "{8AF9BD17-33B8-4149-A390-6BA9BE9C5E6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Entity", "ClothBazar.Entity\ClothBazar.Entity.csproj", "{DA05F4DE-1699-4E23-8B02-C942A1725741}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Database", "ClothBazar.Database\ClothBazar.Database.csproj", "{F1C5B601-AF72-4EB8-89DC-972F2244F270}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Database", "ClothBazar.Database\ClothBazar.Database.csproj", "{3A5D2C70-D224-4A52-937F-0972C288C5F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClothBazar.Services", "ClothBazar.Services\ClothBazar.Services.csproj", "{40073C65-EF6D-4E25-8287-DCC2DD10243E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1C7CBD33-1C69-45A2-97C9-C7766496C4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C7CBD33-1C69-45A2-97C9-C7766496C4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C7CBD33-1C69-45A2-97C9-C7766496C4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C7CBD33-1C69-45A2-97C9-C7766496C4E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8AF9BD17-33B8-4149-A390-6BA9BE9C5E6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8AF9BD17-33B8-4149-A390-6BA9BE9C5E6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8AF9BD17-33B8-4149-A390-6BA9BE9C5E6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8AF9BD17-33B8-4149-A390-6BA9BE9C5E6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F1C5B601-AF72-4EB8-89DC-972F2244F270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F1C5B601-AF72-4EB8-89DC-972F2244F270}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F1C5B601-AF72-4EB8-89DC-972F2244F270}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F1C5B601-AF72-4EB8-89DC-972F2244F270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{972E78C4-B7F1-40C7-95B9-B3AC555C9DCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{972E78C4-B7F1-40C7-95B9-B3AC555C9DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{972E78C4-B7F1-40C7-95B9-B3AC555C9DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{972E78C4-B7F1-40C7-95B9-B3AC555C9DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA05F4DE-1699-4E23-8B02-C942A1725741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA05F4DE-1699-4E23-8B02-C942A1725741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA05F4DE-1699-4E23-8B02-C942A1725741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA05F4DE-1699-4E23-8B02-C942A1725741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A5D2C70-D224-4A52-937F-0972C288C5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A5D2C70-D224-4A52-937F-0972C288C5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A5D2C70-D224-4A52-937F-0972C288C5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A5D2C70-D224-4A52-937F-0972C288C5F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40073C65-EF6D-4E25-8287-DCC2DD10243E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40073C65-EF6D-4E25-8287-DCC2DD10243E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40073C65-EF6D-4E25-8287-DCC2DD10243E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40073C65-EF6D-4E25-8287-DCC2DD10243E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

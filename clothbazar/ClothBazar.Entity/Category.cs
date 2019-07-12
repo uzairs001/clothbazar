@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClothBazar.Entity
 {
-   public class Category:BaseClass
+    public class Category:BaseClass
     {
         public List<Product> Products { get; set; }
     }

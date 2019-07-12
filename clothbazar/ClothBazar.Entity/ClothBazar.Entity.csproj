@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8AF9BD17-33B8-4149-A390-6BA9BE9C5E6F}</ProjectGuid>
+    <ProjectGuid>{DA05F4DE-1699-4E23-8B02-C942A1725741}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClothBazar.Entity</RootNamespace>

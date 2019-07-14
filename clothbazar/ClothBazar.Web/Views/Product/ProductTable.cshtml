@@ -1,0 +1,65 @@
+﻿@model List<ClothBazar.Entity.Product>
+@{
+    ViewBag.Title = "ProductTable";
+}
+
+<div>
+    <div>
+        <form method="post">
+            <input id="searchTxt" />
+            <button type="button" id="searchBtn">Search</button>
+        </form>
+
+        <button>New</button>
+    </div>
+
+    <h2>ProductTable</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Category</td>
+                <td>Price</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>-</td>
+                    <td>@product.Price</td>
+                    <td>
+                        <button>Edit</button>
+                        <button>Delete</button>
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    
+    $("#searchBtn").click(function () {
+       var searchValue = $("#searchTxt").val();
+       $.ajax( {
+           url:"/Product/ProductTable",
+           data: {
+               search: searchValue
+           }
+
+           
+       })
+       .done(function(response){
+           $("#tableContainer").html(response);
+       })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            
+
+        });
+    });
+</script>

@@ -38,14 +38,14 @@ namespace ClothBazar.Services
         }
 
        public void UpdateProduct(Product product)
-        {
-            using (var context = new CBContext())
-            {
-                context.Entry(product).State = System.Data.Entity.EntityState.Modified;
-                context.SaveChanges();
+       {
+           using (var context = new CBContext())
+           {
+               context.Entry(product).State = System.Data.Entity.EntityState.Modified;
+               context.SaveChanges();
 
-            }
-        }
+           }
+       }
 
        public void DeleteProduct(int ID)
         {

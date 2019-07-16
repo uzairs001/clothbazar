@@ -55,5 +55,7 @@ namespace ClothBazar.Web.Controllers
             categoryService.DeleteCategory(category.ID);
             return RedirectToAction("Index");
         }
+
+      
     }
 }

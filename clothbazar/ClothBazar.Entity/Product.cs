@@ -8,7 +8,7 @@ namespace ClothBazar.Entity
 {
    public class Product:BaseClass
     {
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
         public decimal Price { get; set; }
     }
 }

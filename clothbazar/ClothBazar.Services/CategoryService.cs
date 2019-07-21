@@ -56,5 +56,7 @@ namespace ClothBazar.Services
                 context.SaveChanges();
             }
         }
+
+       
     }
 }

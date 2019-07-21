@@ -4,17 +4,19 @@
 }
 
 <div>
-    <div>
+    <div class="form-control">
         <form method="post">
-            <input id="searchTxt" />
+            <label>Search</label>
+            <input class="form-group" id="searchTxt" />
             <button type="button" id="searchBtn">Search</button>
+            <button type="button" id="newBtn">New</button>
         </form>
 
-        <button type="button" id="newBtn">New</button>
+        
     </div>
 
     <h2>ProductTable</h2>
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <td>Name</td>
@@ -28,9 +30,18 @@
             {
                 <tr>
                     <td>@product.Name</td>
-                    <td>-</td>
+                    <td>
+                        @if (product.Category != null)
+                        {
+                            <text>@product.Category.Name</text>
+                        }
+                        else
+                        {
+                            <text>-</text>
+                        }
+                    </td>
                     <td>@product.Price</td>
-                    
+
                     <td>
                         <button type="button" class="edit" data-id="@product.ID">Edit</button>
                         <button type="button" class="delete" data-id="@product.ID">Delete</button>

@@ -16,7 +16,7 @@
 
     <button type="submit">Save</button>
     <input name="ImageURL" id="ImageURL" type="hidden"/>
-    <img   style="width:300px; height:300px;" id="categoryImage" >
+    <img style="width:300px; height:300px; display:none" id="categoryImage">
 </form>
 <script>
     $("#imageUpload").change(function () {
@@ -40,6 +40,7 @@
             if (response.Success) {
                 $("#ImageURL").val(response.ImageURL);
                 $("#categoryImage").attr("src", response.ImageURL);
+                $("#categoryImage").css("display", "block");
                 
             }
         })

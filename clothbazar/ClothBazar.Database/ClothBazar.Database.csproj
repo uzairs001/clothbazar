@@ -57,6 +57,10 @@
     <Compile Include="Migrations\201907181907368_imageURLfieldAddedInCategory.Designer.cs">
       <DependentUpon>201907181907368_imageURLfieldAddedInCategory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907230956465_isFeaturedColumnAdded.cs" />
+    <Compile Include="Migrations\201907230956465_isFeaturedColumnAdded.Designer.cs">
+      <DependentUpon>201907230956465_isFeaturedColumnAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907181907368_imageURLfieldAddedInCategory.resx">
       <DependentUpon>201907181907368_imageURLfieldAddedInCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907230956465_isFeaturedColumnAdded.resx">
+      <DependentUpon>201907230956465_isFeaturedColumnAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

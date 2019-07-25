@@ -37,7 +37,7 @@ namespace ClothBazar.Web.Controllers
         public ActionResult Create()
         {
             CategoryService category = new CategoryService();
-           List<Category> cat = category.GetCategory();
+           List<Category> cat = category.GetFeaturedCategory();
            return PartialView(cat);
         }
         [HttpPost]

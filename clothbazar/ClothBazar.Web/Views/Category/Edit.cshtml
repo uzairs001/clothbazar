@@ -6,24 +6,91 @@
     var falseChecked = Model.IsFeatured ? string.Empty : "checked";
     
 }
+<div class="container">
+    <h2>Edit Category</h2>
+    <form id="editForm" method="post" class="form-group">
+        <div class="row">
+            <div class="col-md-8">
+                <input name="ID" value="@Model.ID" type="hidden" />
+                <label>Name</label>
+                <input class="form-control" name="Name" value="@Model.Name" />
+                <br />
+                <label>Description</label>
+                <input class="form-control" name="Description" value="@Model.Description" />
+                <br />
+                <label>IsFeatured?</label>
+                <input class="form-control" name="isFeatured" type="radio" value="true" @trueChecked />True
+                <input class="form-control" name="isFeatured" type="radio" value="false" @falseChecked />False
+                <input id="imageUpload" type="file" class="form-control" />
+                <input name="ImageURL" id="ImageURL" type="hidden" value="@Model.ImageURL" />
+                <br />
+                
+                
+            </div>
+            <div class="col-md-4">
 
-<h2>Create</h2>
-<form method="post">
-     
- 
-    <input name="ID" value="@Model.ID" type="hidden" />
-    <label>Name</label>
-    <input name="Name" value="@Model.Name" />
-    <br />
-    <label>Description</label>
-    <input name="Description" value="@Model.Description" />
-    <br />
-    <label>IsFeatured?</label>
-    <input name="isFeatured" type="radio" value="true" @trueChecked/>True
-    <input name="isFeatured" type="radio" value="false" @falseChecked/>False
-    <br />
-    <button type="submit">Save</button>
-    
-</form>
+                 @if (string.IsNullOrEmpty(Model.ImageURL))
+                 {
+                    <img id="categoryImage" src="~/Content/images/shop/images.png" style="width:550px; height:300px;" />
+                 }
+                 else
+                 {
+                    <img id="categoryImage" src="@Model.ImageURL" />
+                 }
+            </div>
+        </div>
+
+        <button id="updateBtn" type="button">Update</button>
+
+    </form>
 
 
+</div>
+
+<script>
+        $("#imageUpload").change(function () {
+            var element = this;
+            var formData = new FormData();
+            var totalFiles = element.files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = element.files[i];
+                formData.append("Photo", file);
+            }
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UploadImage", "Shared")',
+                dataType: 'json',
+                data: formData,
+                contentType: false,
+                processData: false
+            })
+            .done(function (response) {
+                console.log(response);
+                if (response.Success) {
+                    $("#ImageURL").val(response.ImageURL);
+                    $("#categoryImage").attr("src", response.ImageURL);
+
+
+                }
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("FAIL");
+            });
+        });
+
+    $("#updateBtn").click( function() {
+
+        $.ajax({
+            type:'POST',
+            url: 'Category/Edit',
+            data : $("#editForm").serialize()
+        })
+            .done(function (response){
+                $("#searchTable").html(response);
+                $("#EditCategory").html("");
+            })
+            .fail(function (HMLHttpRequest,textStatus,errorThrown){
+
+            });
+    })
+</script>

@@ -47,6 +47,7 @@
             data:$("#CreateForm").serialize()
         })
          .done(function (response) {
+             console.log(response);
              $("#tableContainer").html(response);
              $("#newContainer").html("");
          })

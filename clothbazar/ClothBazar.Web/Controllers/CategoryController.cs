@@ -14,47 +14,59 @@ namespace ClothBazar.Web.Controllers
 
         public ActionResult Index()
         {
+
+            return View();
+        }
+
+        public ActionResult CategoryTable(string search)
+        {
             var categoryList = categoryService.GetCategory();
-            return View(categoryList);
+            if (!string.IsNullOrEmpty(search))
+            {
+                categoryList = categoryList.Where(x => x.Name != null && x.Name.ToLower().Contains(search.ToLower())).ToList();
+            }
+            return PartialView(categoryList);
+
         }
         // GET: Category
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
         [HttpPost]
         public ActionResult Create(Category category)
         {
             categoryService.SaveCategory(category);
-            return View();
+            return RedirectToAction("CategoryTable");
         }
 
         [HttpGet]
         public ActionResult Edit(int ID)
         {
             var categoryByID = categoryService.EditCategory(ID);
-            return View(categoryByID);
+            return PartialView(categoryByID);
         }
         [HttpPost]
         public ActionResult Edit(Category category)
         {
-            categoryService.UpdateCategory(category); 
-            return RedirectToAction("Index");
+            categoryService.UpdateCategory(category);
+            return RedirectToAction("CategoryTable");
         }
 
         [HttpGet]
         public ActionResult Delete(int ID)
         {
             var category =  categoryService.EditCategory(ID);
-            return View(category);
-        }
-        [HttpPost]
-        public ActionResult Delete(Category category)
-        {
             categoryService.DeleteCategory(category.ID);
-            return RedirectToAction("Index");
+            return RedirectToAction("CategoryTable");
         }
+        //[HttpPost]
+        //public ActionResult Delete(Category category)
+        //{
+        //    categoryService.DeleteCategory(category.ID);
+        //    return RedirectToAction("Index");
+        //}
 
       
     }

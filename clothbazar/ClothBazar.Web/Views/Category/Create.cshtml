@@ -2,57 +2,84 @@
 @{
     ViewBag.Title = "Create";
 }
+<div class="container">
+    <h2>Create Category</h2>
+    <form id="createCategory" method="post" class="form-group">
+        <div class="row">
+            <div class="col-md-8">
+                <label>Name</label>
+                <input class="form-control" name="Name" />
+                <br />
+                <label>Description</label>
+                <input class="form-control" name="Description" />
+                <br />
+                <label>isFeatured?</label>
+                <input class="form-control" name="isFeatured" type="radio" value="true" />True
+                <input class="form-control" name="isFeatured" type="radio" value="false" />False
+                <br />
+                <input class="form-control" id="imageUpload" type="file" />
 
-<h2>Create</h2>
-<form method="post">
-    <label>Name</label>
-    <input name="Name" />
-    <br />
-    <label>Description</label>
-    <input name="Description" />
-    <br />
-    <label>isFeatured?</label>
-    <input name="isFeatured" type="radio" value="true"/>True
-    <input name="isFeatured" type="radio" value="false" />False
-    <br />
-    <input id="imageUpload" type="file" />
-
-
-    <button type="submit">Save</button>
-    <input name="ImageURL" id="ImageURL" type="hidden"/>
-    <img style="width:300px; height:300px; display:none" id="categoryImage">
-</form>
-<script>
-    $("#imageUpload").change(function () {
-        var element = this;
-        var formData = new FormData();
-        var totalFiles = element.files.length;
-        for (var i = 0; i < totalFiles; i++) {
-            var file = element.files[i];
-            formData.append("Photo", file);
-        }
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("UploadImage", "Shared")',
-            dataType: 'json',
-            data: formData,
-            contentType: false,
-            processData: false
-        })
-        .done(function (response) {
-            console.log(response);
-            if (response.Success) {
-                $("#ImageURL").val(response.ImageURL);
-                $("#categoryImage").attr("src", response.ImageURL);
-                $("#categoryImage").css("display", "block");
+            </div>
+            <div class="col-md-4">
+                <input name="ImageURL" id="ImageURL" type="hidden" />
                 
+                <img src="~/Content/images/shop/images.png" style="width:550px; height:300px;" id="categoryImage">
+            </div>
+
+        </div>
+        
+        
+        
+       
+
+        <button id="saveBtn" type="button">Save</button>
+    </form>
+    <script>
+        $("#imageUpload").change(function () {
+            var element = this;
+            var formData = new FormData();
+            var totalFiles = element.files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = element.files[i];
+                formData.append("Photo", file);
             }
-        })
-        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-            alert("FAIL");
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UploadImage", "Shared")',
+                dataType: 'json',
+                data: formData,
+                contentType: false,
+                processData: false
+            })
+            .done(function (response) {
+                console.log(response);
+                if (response.Success) {
+                    $("#ImageURL").val(response.ImageURL);
+                    $("#categoryImage").attr("src", response.ImageURL);
+                   
+
+                }
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("FAIL");
+            });
         });
-    });
+        $("#saveBtn").click(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/Category/Create',
+                data: $('#createCategory').serialize()
+            })
+            .done(function (response) {
+                console.log(response);
+                $('#searchTable').html(response);
+                $('#newCategory').html("");
+            })
+            .fail(function (XMLHttpRequest,textStatus,errorThrown) {
 
-</script>
+            })
+        })
+    </script>
 
+ </div>
 

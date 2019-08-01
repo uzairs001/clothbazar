@@ -256,6 +256,7 @@
     <Content Include="Content\images\image-box\imgbox-5-370x370.jpg" />
     <Content Include="Content\images\image-box\imgbox-5-576x300.jpg" />
     <Content Include="Content\images\image-box\imgbox-6-370x370.jpg" />
+    <Content Include="Content\images\images.png" />
     <Content Include="Content\images\instagram\instagram-1-337x280.jpg" />
     <Content Include="Content\images\instagram\instagram-2-337x280.jpg" />
     <Content Include="Content\images\instagram\instagram-3-337x280.jpg" />
@@ -279,6 +280,7 @@
     <Content Include="Content\images\pattern\7.png" />
     <Content Include="Content\images\pattern\8.png" />
     <Content Include="Content\images\pattern\9.png" />
+    <Content Include="Content\images\shop\images.png" />
     <Content Include="Content\images\shop\s-01.jpg" />
     <Content Include="Content\images\shop\s-02.jpg" />
     <Content Include="Content\images\shop\s-03.jpg" />
@@ -451,6 +453,7 @@
     <Content Include="Content\stylesheets\shortcodes.css" />
     <Content Include="Content\stylesheets\style.css" />
     <Content Include="Content\stylesheets\woocommerce.css" />
+    <Content Include="Content\system\placeholder-image.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -525,6 +528,7 @@
     <Content Include="Views\Product\ProductTable.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Category\CategoryTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

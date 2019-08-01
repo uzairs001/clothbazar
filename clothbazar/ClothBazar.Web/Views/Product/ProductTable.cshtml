@@ -4,12 +4,26 @@
 }
 
 <div>
-    <div class="form-control">
+    <div class="form-group">
         <form method="post">
-            <label>Search</label>
-            <input class="form-group" id="searchTxt" />
-            <button type="button" id="searchBtn">Search</button>
-            <button type="button" id="newBtn">New</button>
+           
+               
+                   <div class="row">
+                       <div class="col-md-8">
+                          
+                           <input placeholder="search" class="form-control" id="searchTxt" />
+                       </div>
+                       <div class="col-md-4">
+                           <button type="button" id="searchBtn">Search</button>
+                           <button type="button" id="newBtn">New</button>
+                       </div>
+                   </div>
+                       
+                   
+            
+            
+            
+           
         </form>
 
         
@@ -68,7 +82,8 @@
 
            
        })
-       .done(function(response){
+       .done(function (response) {
+           console.log(response);
            $("#tableContainer").html(response);
        })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
@@ -83,7 +98,9 @@
             url: "/Product/Create"
         })
         .done(function (response) {
+          
             $("#newContainer").html(response);
+            
         })
          .fail(function (XMLHttpRequest, textStatus, errorThrown) {
              alert("FAIL");

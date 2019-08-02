@@ -24,13 +24,13 @@ namespace ClothBazar.Services
        public List<Product> GetProduct()
         {
 
-            //var context = new CBContext();
-            //return context.Products.ToList(); 
-            using (var context = new CBContext())
-            {
-                return context.Products.Include(x => x.Category).ToList();
+            var context = new CBContext();
+            return context.Products.Include(x => x.Category).ToList();
+            //using (var context = new CBContext())
+            //{
+            //    return context.Products.Include(x => x.Category).ToList();
 
-            }
+            //}
         }
 
        public Product EditProduct(int ID)

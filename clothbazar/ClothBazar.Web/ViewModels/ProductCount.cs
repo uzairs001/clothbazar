@@ -9,6 +9,6 @@ namespace ClothBazar.Web.ViewModels
     public class ProductCount
     {
         public List<Category> catList { get; set; }
-        public List<Product> productList { get; set; }
+        
     }
 }

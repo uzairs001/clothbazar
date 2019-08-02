@@ -21,11 +21,11 @@ namespace ClothBazar.Web.Controllers
 
         public ActionResult CategoryTable(string search)
         {
-            ProductCount productCount = new ProductCount();
+          ProductCount productCount = new ProductCount();
             ProductService Pservice = new ProductService();
             productCount.catList = categoryService.GetCategory();
             Category cat = new Category();
-            productCount.productList = Pservice.GetProduct();
+           
             if (!string.IsNullOrEmpty(search))
             {
 

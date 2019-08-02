@@ -8,7 +8,7 @@ namespace ClothBazar.Entity
 {
     public class Category:BaseClass
     {
-        public List<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
         public string ImageURL { get; set; }
         public bool IsFeatured { get; set; }
     }

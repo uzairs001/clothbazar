@@ -17,15 +17,20 @@ namespace ClothBazar.Services
                 context.Categories.Add(category);
                 context.SaveChanges();
             }
+            
+           
         }
 
         public List<Category> GetCategory()
         {
-            using (var context = new CBContext())
-            {
-                return context.Categories.ToList();
-                
-            }
+            var context = new CBContext();
+            return context.Categories.ToList();
+            //using (var context = new CBContext())
+            //{
+            //    return context.Categories.ToList();
+
+            //}
+            
         }
 
         public List<Category> GetFeaturedCategory()

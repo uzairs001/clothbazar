@@ -1,4 +1,4 @@
-﻿@model List<ClothBazar.Entity.Category>
+﻿@model ClothBazar.Web.ViewModels.ProductCount
 @{
     ViewBag.Title = "CategoryTable";
 }
@@ -39,14 +39,22 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var category in Model)
+            @foreach (var category in Model.catList)
             {
                 <tr>
 
                     <td>@category.Name</td>
 
+                    @try
+                    {
+                        <td>@category.Products.Count</td>
+                    }
+                    catch (Exception)
+                    {
 
-                    <td>@category.Products</td>
+                        
+                    }
+                    
 
 
 

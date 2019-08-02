@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClothBazar.Entity;
 using ClothBazar.Services;
+using ClothBazar.Web.ViewModels;
 
 namespace ClothBazar.Web.Controllers
 {
@@ -20,12 +21,17 @@ namespace ClothBazar.Web.Controllers
 
         public ActionResult CategoryTable(string search)
         {
-            var categoryList = categoryService.GetCategory();
+            ProductCount productCount = new ProductCount();
+            ProductService Pservice = new ProductService();
+            productCount.catList = categoryService.GetCategory();
+            Category cat = new Category();
+            productCount.productList = Pservice.GetProduct();
             if (!string.IsNullOrEmpty(search))
             {
-                categoryList = categoryList.Where(x => x.Name != null && x.Name.ToLower().Contains(search.ToLower())).ToList();
+
+                productCount.catList = productCount.catList.Where(x => x.Name != null && x.Name.ToLower().Contains(search.ToLower())).ToList();
             }
-            return PartialView(categoryList);
+            return PartialView(productCount);
 
         }
         // GET: Category

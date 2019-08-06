@@ -24,15 +24,28 @@ namespace ClothBazar.Services
        public List<Product> GetProduct()
         {
 
-            var context = new CBContext();
-            return context.Products.Include(x => x.Category).ToList();
-            //using (var context = new CBContext())
-            //{
-            //    return context.Products.Include(x => x.Category).ToList();
+            //var context = new CBContext();
+            //return context.Products.Include(x => x.Category).ToList();
+            using (var context = new CBContext())
+            {
+                return context.Products.Include(x => x.Category).ToList();
 
-            //}
+            }
         }
 
+
+       public List<Product> GetCartProduct(List<int> IDs)
+       {
+
+        
+           using (var context = new CBContext())
+           {
+               return context.Products.Where(x => IDs.Contains(x.ID)).ToList();
+
+           }
+       }
+
+     
        public Product EditProduct(int ID)
         {
             using (var context = new CBContext())

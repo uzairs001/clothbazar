@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClothBazar.Database;
 using ClothBazar.Entity;
+using System.Data.Entity;
 
 namespace ClothBazar.Services
 {
@@ -23,13 +24,13 @@ namespace ClothBazar.Services
 
         public List<Category> GetCategory()
         {
-            var context = new CBContext();
-            return context.Categories.ToList();
-            //using (var context = new CBContext())
-            //{
-            //    return context.Categories.ToList();
+            //var context = new CBContext();
+            //return context.Categories.ToList();
+            using (var context = new CBContext())
+            {
+                return context.Categories.Include(x => x.Products).ToList();
 
-            //}
+            }
             
         }
 

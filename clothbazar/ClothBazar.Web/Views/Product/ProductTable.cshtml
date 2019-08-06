@@ -59,6 +59,7 @@
                     <td>
                         <button type="button" class="edit" data-id="@product.ID">Edit</button>
                         <button type="button" class="delete" data-id="@product.ID">Delete</button>
+                        <button type="button" class="addToCart" data-id="@product.ID">Add To Cart</button>
 
                     </td>
                 </tr>
@@ -149,5 +150,15 @@
         }
        
 
+    })
+
+    var products = [];
+    $('.addToCart').click(function () {
+
+        var pID = $(this).attr('data-id');
+        alert(pID);
+        products.push(pID);
+        $.cookie('addToCartCookie', products.join('-'));
+       
     })
 </script>

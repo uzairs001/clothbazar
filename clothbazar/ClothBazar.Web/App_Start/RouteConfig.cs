@@ -13,6 +13,13 @@ namespace ClothBazar.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "All",
+                url: "search/all",
+                defaults: new { controller = "Product", action = "ProductTable", id = UrlParameter.Optional }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -11,7 +11,7 @@ namespace ClothBazar.Web.Controllers
 {
     public class ProductController : Controller
     {
-        ProductService productService = new ProductService();
+        
         
         // GET: Product
         public ActionResult Index()
@@ -19,60 +19,63 @@ namespace ClothBazar.Web.Controllers
             return View();
         }
 
-        public ActionResult ProductTable(string search)
+        public ActionResult ProductTable(string search,int? pageNo)
         {
-
-
-         var product = productService.GetProduct();
-            if (string.IsNullOrEmpty(search) == false)
+            ProductSearchViewModel model = new ProductSearchViewModel();
+            pageNo = (pageNo.HasValue) ? pageNo.Value > 0 ? pageNo : 1 : 1;
+            model.pageNo = pageNo.Value;
+            //model.Products = ProductService.Instance.GetProduct(pageNo.Value);
+            model.Products = ProductService.Instance.GetProduct();
+            if (string.IsNullOrEmpty(search) == false && model.pageNo==1)
             {
-                product = product.Where(x => x.Name != null && x.Name.ToLower().Contains(search.ToLower())).ToList();
+                model.Products = ProductService.Instance.GetProduct();
+                model.Products = model.Products.Where(x => x.Name != null && x.Name.ToLower().Contains(search.ToLower())).ToList();
 
             }
-            return PartialView(product);
+            return PartialView(model);
 
 
         }
 
         public ActionResult Create()
         {
-            CategoryService category = new CategoryService();
-           List<Category> cat = category.GetFeaturedCategory();
+           
+           List<Category> cat = CategoryService.Instance.GetFeaturedCategory();
            return PartialView(cat);
         }
         [HttpPost]
         public ActionResult Create(CategoryViewModel categoryViewModel)
         {
-            CategoryService categoryService = new CategoryService();
+           
             Product newproduct = new Product();
             newproduct.Name = categoryViewModel.Name;
             newproduct.Description = categoryViewModel.Description;
             newproduct.Price = categoryViewModel.Price;
-            newproduct.Category =categoryService.EditCategory(categoryViewModel.CategoryID);
+            newproduct.Category = CategoryService.Instance.EditCategory(categoryViewModel.CategoryID);
             
 
-            productService.SaveProduct(newproduct);
+            ProductService.Instance.SaveProduct(newproduct);
             return RedirectToAction("ProductTable");
         }
 
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            var productByID = productService.EditProduct(ID);
+            var productByID = ProductService.Instance.EditProduct(ID);
             return PartialView(productByID);
         }
         [HttpPost]
         public ActionResult Edit(Product product)
         {
-            productService.UpdateProduct(product);
+            ProductService.Instance.UpdateProduct(product);
             return RedirectToAction("ProductTable");
         }
 
         [HttpGet]
         public ActionResult Delete(int ID)
         {
-            var product = productService.EditProduct(ID);
-            productService.DeleteProduct(product.ID);
+            var product = ProductService.Instance.EditProduct(ID);
+            ProductService.Instance.DeleteProduct(product.ID);
             return RedirectToAction("ProductTable");
         }
       

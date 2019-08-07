@@ -1,8 +1,10 @@
-﻿@model List<ClothBazar.Entity.Product>
+﻿@model ClothBazar.Web.ViewModels.ProductSearchViewModel
 @{
     ViewBag.Title = "ProductTable";
 }
 
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <div>
     <div class="form-group">
         <form method="post">
@@ -30,53 +32,92 @@
     </div>
 
     <h2>ProductTable</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <td>Name</td>
-                <td>Category</td>
-                <td>Price</td>
-                <td>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Model)
-            {
+    @if (Model.Products != null && Model.Products.Count >0)
+    {
+        <table id ="productTables" class="table table-striped">
+            <thead>
                 <tr>
-                    <td>@product.Name</td>
-                    <td>
-                        @if (product.Category != null)
-                        {
-                            <text>@product.Category.Name</text>
-                        }
-                        else
-                        {
-                            <text>-</text>
-                        }
-                    </td>
-                    <td>@product.Price</td>
-
-                    <td>
-                        <button type="button" class="edit" data-id="@product.ID">Edit</button>
-                        <button type="button" class="delete" data-id="@product.ID">Delete</button>
-                        <button type="button" class="addToCart" data-id="@product.ID">Add To Cart</button>
-
-                    </td>
+                    <td>Name</td>
+                    <td>Category</td>
+                    <td>Price</td>
+                    <td>Action</td>
                 </tr>
-            }
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>
+                            @if (product.Category != null)
+                            {
+                                <text>@product.Category.Name</text>
+                            }
+                            else
+                            {
+                                <text>-</text>
+                            }
+                        </td>
+                        <td>@product.Price</td>
+
+                        <td>
+                            <button type="button" class="edit" data-id="@product.ID">Edit</button>
+                            <button type="button" class="delete" data-id="@product.ID">Delete</button>
+                            <button type="button" class="addToCart" data-id="@product.ID">Add To Cart</button>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div>No Product Found</div>
+    }
+   
+    @*<div>
+        @if (Model.pageNo != 1)
+        {
+            <button class="pageBtn" data-pageno="@(Model.pageNo-1)">PreviousPage</button>
+        }
+       
+        <button class="pageBtn" data-pageNo="@(Model.pageNo+1)">NextPage</button>
+    </div>*@
 </div>
 <div id="EditTable">
 
 </div>
 <script>
+    $('#productTables').DataTable();
     
+    $(".pageBtn").click(function () {
+       
+        $.ajax({
+            url: '@Url.Action("ProductTable","Product")',
+            data: {
+                pageNo: $(this).attr('data-pageNo')
+            }
+
+
+        })
+        .done(function (response) {
+            console.log(response);
+            $("#tableContainer").html(response);
+        })
+         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+
+
+         });
+    });
+
+
     $("#searchBtn").click(function () {
        var searchValue = $("#searchTxt").val();
        $.ajax( {
-           url:"/Product/ProductTable",
+           url:'@Url.Action("ProductTable","Product")',
            data: {
                search: searchValue
            }
@@ -151,6 +192,9 @@
        
 
     })
+
+   
+
 
     var products = [];
     $('.addToCart').click(function () {

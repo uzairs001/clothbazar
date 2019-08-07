@@ -11,6 +11,20 @@ namespace ClothBazar.Services
 {
    public class CategoryService
     {
+       private static CategoryService instance {get; set;}
+       public static CategoryService Instance 
+       {
+           get
+           {
+               if (instance == null) instance = new CategoryService();
+               return instance;
+           }
+       }
+       
+       private CategoryService()
+       {
+
+       }
         public void SaveCategory(Category category)
         {
             using (var context = new CBContext())

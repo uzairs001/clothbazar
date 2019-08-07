@@ -177,6 +177,7 @@
     <Compile Include="ViewModels\CheckOutViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ProductCount.cs" />
+    <Compile Include="ViewModels\ProductSearchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />

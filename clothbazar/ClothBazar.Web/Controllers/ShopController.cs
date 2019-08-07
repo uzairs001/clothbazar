@@ -14,14 +14,14 @@ namespace ClothBazar.Web.Controllers
         public ActionResult CheckOut()
         {
             CheckOutViewModel model = new CheckOutViewModel();
-            ProductService Pservice = new ProductService();
+          
            var cartProduct =  Request.Cookies["addToCartCookie"];
            if (cartProduct != null)
            {
                var cartProducts = cartProduct.Value;
                var cartItemInString = cartProducts.Split('-');
                List<int> cartItem = cartItemInString.Select(x =>int.Parse(x)).ToList();
-               model.cartProducts = Pservice.GetCartProduct(cartItem);
+               model.cartProducts = ProductService.Instance.GetCartProduct(cartItem);
                model.ProductID = cartItem;
 
            }

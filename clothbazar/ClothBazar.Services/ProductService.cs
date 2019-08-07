@@ -11,6 +11,18 @@ namespace ClothBazar.Services
 {
    public class ProductService
     {
+       private static ProductService instance { get; set; }
+       public static ProductService Instance 
+       {
+         get  {
+             if (instance == null) instance = new ProductService();
+             return instance;
+           }
+       }
+       private ProductService()
+       {
+
+       }
        public void SaveProduct(Product product)
         {
             using (var context = new CBContext())
@@ -22,13 +34,25 @@ namespace ClothBazar.Services
         }
 
        public List<Product> GetProduct()
-        {
+       {
+         
+           //var context = new CBContext();
+           //return context.Products.Include(x => x.Category).ToList();
+           using (var context = new CBContext())
+           {
+               return context.Products.Include(x => x.Category).ToList();
 
+           }
+       }
+
+       public List<Product> GetProduct(int pageNo)
+        {
+            int pageSize = 3;
             //var context = new CBContext();
             //return context.Products.Include(x => x.Category).ToList();
             using (var context = new CBContext())
             {
-                return context.Products.Include(x => x.Category).ToList();
+                return context.Products.OrderBy(x=>x.ID).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x => x.Category).ToList();
 
             }
         }

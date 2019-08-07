@@ -135,14 +135,14 @@
     });
 
     $("#newBtn").click(function () {
-       
+        
         $.ajax({
             url: "/Product/Create"
         })
         .done(function (response) {
           
             $("#newContainer").html(response);
-            
+            focusAction();
         })
          .fail(function (XMLHttpRequest, textStatus, errorThrown) {
              alert("FAIL");
@@ -151,7 +151,7 @@
     });
 
     $(".edit").click(function () {
-        
+       
         $.ajax({
             
             url: "/Product/Edit",
@@ -162,6 +162,7 @@
         
          .done(function (response) {
              $("#EditTable").html(response);
+             focusAction2();
          })
          .fail(function (XMLHttpRequest,textStatus,errorThrown) {
              alert("FAIL;")
@@ -193,8 +194,19 @@
 
     })
 
-   
+    function focusAction() {
+        $('html,body').animate({
+            scrollTop: $("#newContainer").offset().top - 100
+        }, 1000);
 
+    }
+
+    function focusAction2() {
+        $('html,body').animate({
+            scrollTop: $("#EditTable").offset().top - 100
+        }, 1000);
+
+    }
 
     var products = [];
     $('.addToCart').click(function () {

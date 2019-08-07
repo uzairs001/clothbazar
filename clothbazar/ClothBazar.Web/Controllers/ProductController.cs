@@ -51,6 +51,7 @@ namespace ClothBazar.Web.Controllers
             newproduct.Name = categoryViewModel.Name;
             newproduct.Description = categoryViewModel.Description;
             newproduct.Price = categoryViewModel.Price;
+            newproduct.ImageURL = categoryViewModel.imageURL;
             newproduct.Category = CategoryService.Instance.EditCategory(categoryViewModel.CategoryID);
             
 

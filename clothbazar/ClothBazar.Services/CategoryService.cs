@@ -52,7 +52,7 @@ namespace ClothBazar.Services
         {
             using (var context = new CBContext())
             {
-                return context.Categories.Where(x=>x.IsFeatured).ToList();
+                return context.Categories.Where(x => x.IsFeatured).ToList();
 
             }
         }

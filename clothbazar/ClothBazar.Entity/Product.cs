@@ -10,5 +10,6 @@ namespace ClothBazar.Entity
     {
         public virtual Category Category { get; set; }
         public decimal Price { get; set; }
+        public string ImageURL { get; set; }
     }
 }

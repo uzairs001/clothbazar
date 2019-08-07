@@ -61,6 +61,14 @@
     <Compile Include="Migrations\201907230956465_isFeaturedColumnAdded.Designer.cs">
       <DependentUpon>201907230956465_isFeaturedColumnAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908071041473_ImageURlColumnAdded.cs" />
+    <Compile Include="Migrations\201908071041473_ImageURlColumnAdded.Designer.cs">
+      <DependentUpon>201908071041473_ImageURlColumnAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908071146483_imageURL.cs" />
+    <Compile Include="Migrations\201908071146483_imageURL.Designer.cs">
+      <DependentUpon>201908071146483_imageURL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,6 +91,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907230956465_isFeaturedColumnAdded.resx">
       <DependentUpon>201907230956465_isFeaturedColumnAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908071041473_ImageURlColumnAdded.resx">
+      <DependentUpon>201908071041473_ImageURlColumnAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908071146483_imageURL.resx">
+      <DependentUpon>201908071146483_imageURL.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

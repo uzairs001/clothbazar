@@ -74,6 +74,7 @@
 
     $("#cancelBtn").click(function () {
         $("#CreateForm").html("");
+        focusAnimation();
     });
 
     $("#updateBtn").click(function ()
@@ -92,13 +93,13 @@
          .fail(function (HMLHttpRequest,textStatus,errorThrown) {
              alert("FAIL");
          });
+    });
 
-
-
-
-
+    function focusAnimation() {
+        $('html,body').animate({
+            scrollTop: $('#productTables').offset().top - 100
+        },1000);
     }
-    );
 </script>
 
 

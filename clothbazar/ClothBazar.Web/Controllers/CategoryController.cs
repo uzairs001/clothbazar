@@ -42,8 +42,16 @@ namespace ClothBazar.Web.Controllers
         [HttpPost]
         public ActionResult Create(Category category)
         {
-            CategoryService.Instance.SaveCategory(category);
-            return RedirectToAction("CategoryTable");
+            if (ModelState.IsValid)
+            {
+                CategoryService.Instance.SaveCategory(category);
+                return RedirectToAction("CategoryTable");
+            }
+            else
+            {
+                return new HttpStatusCodeResult(500);
+            }
+            
         }
 
         [HttpGet]

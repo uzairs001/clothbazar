@@ -178,6 +178,7 @@
     <Compile Include="ViewModels\CheckOutViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\ProductCount.cs" />
+    <Compile Include="ViewModels\ProductDetails.cs" />
     <Compile Include="ViewModels\ProductSearchViewModel.cs" />
     <Compile Include="ViewModels\WidgetViewModel.cs" />
   </ItemGroup>
@@ -537,6 +538,8 @@
     <Content Include="Views\Category\CategoryTable.cshtml" />
     <Content Include="Views\Shop\CheckOut.cshtml" />
     <Content Include="Views\Widgets\LatestProducts.cshtml" />
+    <Content Include="Views\Widgets\BestSaleProducts.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

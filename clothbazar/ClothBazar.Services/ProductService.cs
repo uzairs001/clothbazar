@@ -57,6 +57,17 @@ namespace ClothBazar.Services
             }
         }
 
+
+       public List<Product> GetBestSaleProduct(int pageNo,int pageSize)
+       {
+          
+           using (var context = new CBContext())
+           {
+               return context.Products.OrderByDescending(x => x.ID).Skip((pageNo - 1) * pageSize).Take(pageSize).Include(x => x.Category).ToList();
+
+           }
+       }
+
        public List<Product> GetLatestProduct(int count)
        {
            
@@ -82,11 +93,13 @@ namespace ClothBazar.Services
      
        public Product EditProduct(int ID)
         {
-            using (var context = new CBContext())
-            {
-                return context.Products.Find(ID);
+            var context = new CBContext();
+            return context.Products.Find(ID);
+            //using (var context = new CBContext())
+            //{
+            //    return context.Products.Find(ID);
 
-            }
+            //}
         }
 
        public void UpdateProduct(Product product)

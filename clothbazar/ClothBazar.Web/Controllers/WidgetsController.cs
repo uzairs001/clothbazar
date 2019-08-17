@@ -15,6 +15,7 @@ namespace ClothBazar.Web.Controllers
         {
             WidgetViewModel model = new WidgetViewModel();
             model.products = ProductService.Instance.GetLatestProduct(4);
+            
 
             return PartialView(model);
         }

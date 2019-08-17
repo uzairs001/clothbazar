@@ -19,5 +19,14 @@ namespace ClothBazar.Web.Controllers
 
             return PartialView(model);
         }
+
+        public ActionResult BestSaleProducts()
+        {
+            WidgetViewModel model = new WidgetViewModel();
+            model.categories = CategoryService.Instance.GetCategory();
+            model.products = ProductService.Instance.GetBestSaleProduct(1,8);
+
+            return PartialView(model);
+        }
     }
 }

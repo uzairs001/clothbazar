@@ -70,7 +70,7 @@ namespace ClothBazar.Services
 
        public List<Product> GetLatestProduct(int count)
        {
-           
+
            //var context = new CBContext();
            //return context.Products.Include(x => x.Category).ToList();
            using (var context = new CBContext())
@@ -79,6 +79,20 @@ namespace ClothBazar.Services
 
            }
        }
+            public List<Product> GetRelatedProduct(int count,Category categ)
+       {
+           
+           //var context = new CBContext();
+           //return context.Products.Include(x => x.Category).ToList();
+           using (var context = new CBContext())
+           {
+               return context.Products.Where(x=>x.Category.Name == categ.Name).OrderByDescending(x => x.ID).Take(count).Include(x => x.Category).ToList();
+
+           }
+       }
+
+
+
        public List<Product> GetCartProduct(List<int> IDs)
        {
 

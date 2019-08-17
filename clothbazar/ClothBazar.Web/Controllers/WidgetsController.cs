@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ClothBazar.Web.ViewModels;
 using ClothBazar.Services;
+using ClothBazar.Entity;
 
 namespace ClothBazar.Web.Controllers
 {
@@ -25,6 +26,15 @@ namespace ClothBazar.Web.Controllers
             WidgetViewModel model = new WidgetViewModel();
             model.categories = CategoryService.Instance.GetCategory();
             model.products = ProductService.Instance.GetBestSaleProduct(1,8);
+
+            return PartialView(model);
+        }
+
+        public ActionResult RelatedProducts(Category categ)
+        {
+            WidgetViewModel model = new WidgetViewModel();
+            model.products = ProductService.Instance.GetRelatedProduct(4, categ);
+
 
             return PartialView(model);
         }

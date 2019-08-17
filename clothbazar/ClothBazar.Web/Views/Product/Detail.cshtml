@@ -426,5 +426,7 @@
             </div>
         </div>
     </section><!-- /.shop-detail-content -->
-
+  @{
+      Html.RenderAction("RelatedProducts", "Widgets", new { Model.Pdetails.Category.Name});
+  }
 

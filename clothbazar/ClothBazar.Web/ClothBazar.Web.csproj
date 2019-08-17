@@ -540,6 +540,7 @@
     <Content Include="Views\Widgets\LatestProducts.cshtml" />
     <Content Include="Views\Widgets\BestSaleProducts.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Widgets\RelatedProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

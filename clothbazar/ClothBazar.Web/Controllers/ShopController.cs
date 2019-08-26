@@ -10,6 +10,32 @@ namespace ClothBazar.Web.Controllers
 {
     public class ShopController : Controller
     {
+
+          public ActionResult Index(string searchTerm, int? maximumPrice, int? minimumPrice , int? CategoryID,int? sortBy)
+        {
+            FilterProductViewModel model = new FilterProductViewModel();
+            model.categoryList = CategoryService.Instance.GetFeaturedCategory();
+            model.products = ProductService.Instance.ProductsForShopPage(searchTerm, maximumPrice, minimumPrice, CategoryID,sortBy);
+            model.CatID = CategoryID;
+            model.sortByNumber = sortBy;
+            model.maxPrice = ProductService.Instance.GetMaxPrice();
+
+           
+
+            return View(model);
+
+        }
+
+          public ActionResult FilterProduct(string searchTerm, int? filteredmaximumPrice, int? filteredminimumPrice, int? CategoryID, int? sortBy)
+          {
+              SliderFilterProductViewModel model = new SliderFilterProductViewModel();
+              model.filterProduct = ProductService.Instance.ProductsForShopPage(searchTerm, filteredmaximumPrice, filteredminimumPrice, CategoryID, sortBy);
+
+
+
+              return PartialView(model);
+
+          }
         // GET: Shop
         public ActionResult CheckOut()
         {

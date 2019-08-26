@@ -158,6 +158,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Code\Enum.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="ViewModels\ProductCount.cs" />
     <Compile Include="ViewModels\ProductDetails.cs" />
     <Compile Include="ViewModels\ProductSearchViewModel.cs" />
+    <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\WidgetViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +224,7 @@
     <Content Include="Content\images\blog\new-lastest-8-370x280.jpg" />
     <Content Include="Content\images\blog\new-lastest-9-370x280.jpg" />
     <Content Include="Content\images\blog\search_icon.png" />
+    <Content Include="Content\images\ClothBazar.png" />
     <Content Include="Content\images\gallery\gallery-1-870x377.jpg" />
     <Content Include="Content\images\gallery\gallery-2-870x377.jpg" />
     <Content Include="Content\images\image-box\imgbox-1-1173x620.jpg" />
@@ -541,6 +544,8 @@
     <Content Include="Views\Widgets\BestSaleProducts.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Widgets\RelatedProducts.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Shop\FilterProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

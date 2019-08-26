@@ -1,0 +1,156 @@
+﻿@using ClothBazar.Web.ViewModels;
+@using ClothBazar.Web.Code;
+@model FilterProductViewModel
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h1 class="title">SHOP</h1>
+                </div><!-- /.page-title-heading -->
+                @*<div class="breadcrumbs">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop-3col.html">Shop</a></li>
+                            <li><a href="shop-3col-slide.html">Slidebarshop</a></li>
+                        </ul>
+                    </div> /.breadcrumbs*@
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
+
+<section class="flat-row main-shop shop-slidebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="sidebar slidebar-shop">
+                    <div class="widget widget-search">
+                        <form role="search" method="get" class="search-form" action="@Url.Action("Index", "Shop")">
+                            <label>
+                                <input type="search" class="search-field" placeholder="Search …" value="" name="searchTerm">
+                            </label>
+                            <input type="submit" class="search-submit" value="Search">
+                        </form>
+                    </div><!-- /.widget-search -->
+                    <div class="widget widget-sort-by">
+                        <h5 class="widget-title">
+                            Sort By
+                        </h5>
+                   
+             
+                   
+                  
+                      
+                        <ul>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Default?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.Default})">Default-Newness</a></li>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Popularity?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.Popularity})">Popularity</a></li>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceLowToHigh?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.PriceLowToHigh})">Price: low to high</a></li>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceHighToLow?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.PriceHighToLow})">Price: high to low</a></li>
+                        </ul>
+                    </div><!-- /.widget-sort-by -->
+
+                    <div class="widget widget-price">
+                        <h5 class="widget-title">Filter by price</h5>
+                        <div class="price-filter">
+                            <div id="slide-range"></div>
+                            <p class="amount">
+                                Price: <input type="text" id="amount" disabled="">
+                            </p>
+                        </div>
+                    </div>
+                    <div class="widget widget_tag">
+                        <h5 class="widget-title">
+                            Tags
+                        </h5>
+                   
+                        <div class="tag-list">
+                           
+                         @{
+                             var isActiveed = !(@Model.CatID.HasValue) ? "active" : string.Empty;
+                            <a class="@isActiveed" href="@Url.Action("Index", "Shop")">All products</a>
+                        }  
+                            
+                           
+                            @foreach (var item in Model.categoryList)
+                            {
+
+                                var catIDActive = (item.ID == Model.CatID) ? "active" : string.Empty;
+                                <a class="@catIDActive" href="@Url.Action("Index", "Shop", new { CategoryID = item.ID })">@item.Name</a>
+
+
+                            }
+                        </div>
+                    </div><!-- /.widget -->
+                </div><!-- /.sidebar -->
+            </div><!-- /.col-md-3 -->
+            <div class="col-md-9">
+           
+                <div id="productDiv">
+                    @{
+                        var SliderFilterProductViewModel = new SliderFilterProductViewModel();
+                        SliderFilterProductViewModel.filterProduct = Model.products;
+                        Html.RenderPartial("FilterProduct", SliderFilterProductViewModel);
+                    }
+                </div>
+                <div class="filter-shop clearfix">
+                    <p class="showing-product float-right">
+                        Showing 1–12 of 56 Products
+                    </p>
+                </div><!-- /.filte-shop -->
+            </div><!-- /.col-md-9 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</section><!-- /.flat-row -->
+<script>
+    var callTimeout;
+    var priceSlider = $("#slide-range").slider({
+        
+        range: true,
+        min: 0,
+        max: @Model.maxPrice,
+        values: [0, @Model.maxPrice],
+        slide: function (event, ui) {
+            
+            var minPrice = ui.values[0];
+            var maxPrice = ui.values[1];
+            $("#amount").val("$" + minPrice + ".00" + " - " + "$" + maxPrice + ".00");
+            clearTimeout(callTimeout);
+            callTimeout =  setTimeout(getMyData,500);
+
+          
+        
+         
+         
+        }
+    });
+
+  
+
+    function getMyData(minPrice,maxPrice){
+        {
+            console.log("getMyDataCalled");
+            $.ajax({
+               
+                url: "/Shop/FilterProduct",
+                data: {
+                    filteredminimumPrice:priceSlider.slider("values",0),
+                    filteredmaximumPrice:priceSlider.slider("values",1)
+                }
+
+            })
+        .done(function (response) {
+         
+            $("#productDiv").html(response);
+
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+
+        });
+        }
+    }
+
+
+              
+</script>

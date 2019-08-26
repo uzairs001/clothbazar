@@ -6,8 +6,8 @@
 <head>
     <!-- Basic Page Needs -->
     <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-    <title>Modaz HTML Template</title>
+    <!--[if IE]><meta http-equiv='X-UA-Compattble' content='IE=edge,chrome=1'><![endif]-->
+    <title>@ViewBag.Title - ClothBazar</title>
 
     <meta name="author" content="themesflat.com">
 
@@ -29,13 +29,31 @@
 
 
     <!-- Favicon and touch icons  -->
-    <link href="/Content/icon/favicon.png" rel="shortcut icon">
+    <link href="~/Content/images/ClothBazar.png" rel="shortcut icon">
 
     <!--[if lt IE 9]>
         <script src="/Content/javascript/html5shiv.js"></script>
         <script src="/Content/javascript/respond.min.js"></script>
     <![endif]-->
     <script src="/Content/javascript/jquery.min.js"></script>
+    <script src="/Content/javascript/jquery-ui.js"></script>
+    <!-- Revolution Slider -->
+    <script src="Content/rev-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="Content/rev-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="Content/javascript/rev-slider.js"></script>
+    <!-- Load Extensions only on Local File Systems ! The following part can be removed on Server for On Demand Loading -->
+    <script src="Content/rev-slider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="Content/rev-slider/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </body>
+   
 </head>
 <body class="header_sticky header-style-1 has-menu-extra">
     <!-- Preloader -->
@@ -50,8 +68,8 @@
             <header id="header" class="header header-container clearfix">
                 <div class="container clearfix" id="site-header-inner">
                     <div id="logo" class="logo float-left">
-                        <a href="index.html" title="logo">
-                            <img src="/Content/images/logo.png" alt="image" width="107" height="24" data-retina="/Content/images/logo@2x.png" data-width="107" data-height="24">
+                        <a href="@Url.Action("Index","Home")" title="logo">
+                            <img src="~/Content/images/ClothBazar.png" alt="image" width="107" height="24" data-retina="/Content/images/logo@2x.png" data-width="107" data-height="24">
                         </a>
                     </div><!-- /.logo -->
                     <div class="mobile-button"><span></span></div>
@@ -84,73 +102,22 @@
                     <div class="nav-wrap">
                         <nav id="mainnav" class="mainnav">
                             <ul class="menu">
-                                <li class="active">
-                                    <a href="index.html">HOME</a>
-                                    <ul class="submenu">
-                                        <li class="active"><a href="index.html">Homepage Style 1</a></li>
-                                        <li><a href="index-v2.html">Homepage Style 2</a></li>
-                                        <li><a href="index-v3.html">Homepage Style 3</a></li>
-                                        <li><a href="index-v4.html">Homepage Style 4</a></li>
-                                        <li><a href="index-v5.html">Homepage Style 5</a></li>
-                                        <li><a href="index-v6.html">Homepage Style 6</a></li>
-                                        <li><a href="index-v7.html">Homepage Style 7</a></li>
-                                        <li><a href="index-v8.html">Homepage Style 8</a></li>
-                                        <li><a href="index-v9.html">Homepage Style 9</a></li>
-                                        <li><a href="index-v10.html">Homepage Style 10</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="@Url.Action("Index","Home")">HOME</a>
+                                  
                                 </li>
                                 <li>
-                                    <a href="shop-3col.html">SHOP</a>
-                                    <ul class="submenu">
-                                        <li>
-                                            <a href="shop-3col.html">Shop Layouts</a>
-                                            <ul class="submenu">
-                                                <li><a href="shop-3col.html">Three Columns</a></li>
-                                                <li><a href="shop-4col.html">Four Columns</a></li>
-                                                <li><a href="shop-5col.html">Five Columns</a></li>
-                                                <li><a href="shop-3col-slide.html">Slidebar Three Columns</a></li>
-                                            </ul>
+                                    <a href="@Url.Action("Index","Shop")">SHOP</a>
+                                   
                                         </li>
-                                        <li>
-                                            <a href="shop-detail-des.html">Shop Details</a>
-                                            <ul class="submenu">
-                                                <li><a href="shop-detail-des.html">Details Description</a></li>
-                                                <li><a href="shop-detail-exter.html">Details External</a></li>
-                                                <li><a href="shop-detail-option.html">Details Options</a></li>
-                                                <li><a href="shop-detail-fix.html">Details Fix</a></li>
-                                                <li><a href="shop-detail-zoom.html">Details Zoom</a></li>
-                                                <li><a href="shop-detail-group.html">Details Grouped</a></li>
-                                                <li><a href="shop-detail-video.html">Details Video</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
+                                    
+                                   
+                                
                                 <li>
-                                    <a href="coming-soon.html">PAGE</a>
-                                    <ul class="submenu">
-                                        <li><a href="coming-soon.html">Coming Soon</a></li>
-                                        <li><a href="404.html"> Error 404</a></li>
-                                        <li><a href="faqs.html">FAQs</a></li>
-                                    </ul>
+                                    <a href="@Url.Action("CheckOut", "Shop")">CHECKOUT</a>
+                                 
                                 </li>
-                                <li>
-                                    <a href="blog-list.html">BLOG</a>
-                                    <ul class="submenu">
-                                        <li><a href="blog-list.html">Blog List Full</a></li>
-                                        <li><a href="blog-list-1.html">Blog list Slide 1</a></li>
-                                        <li><a href="blog-list-2.html">Blog list Slide 2</a></li>
-                                        <li><a href="blog-grid.html">Blog Gird Full</a></li>
-                                        <li><a href="blog-grid-1.html">Blog Gird Slide</a></li>
-                                        <li><a href="blog-detail.html">Blog Details</a></li>
-                                    </ul><!-- /.submenu -->
-                                </li>
-                                <li>
-                                    <a href="contact.html">CONTACT</a>
-                                    <ul class="submenu right-submenu">
-                                        <li><a href="contact.html">Contact Style 1</a></li>
-                                        <li><a href="contact-v2.html">Contact Style 2</a></li>
-                                    </ul>
-                                </li>
+                               
                             </ul>
                         </nav><!-- /.mainnav -->
                     </div><!-- /.nav-wrap -->
@@ -277,25 +244,10 @@
     <script src="/Content/javascript/equalize.min.js"></script>
     <script src="/Content/javascript/gmap3.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIEU6OT3xqCksCetQeNLIPps6-AYrhq-s&region=GB"></script>
-    <script src="/Content/javascript/jquery-ui.js"></script>
+  
 
     <script src="/Content/javascript/jquery.cookie.js"></script>
     <script src="/Content/javascript/main.js"></script>
 
-    <!-- Revolution Slider -->
-    <script src="Content/rev-slider/js/jquery.themepunch.tools.min.js"></script>
-    <script src="Content/rev-slider/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="Content/javascript/rev-slider.js"></script>
-    <!-- Load Extensions only on Local File Systems ! The following part can be removed on Server for On Demand Loading -->
-    <script src="Content/rev-slider/js/extensions/revolution.extension.actions.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.carousel.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.migration.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.navigation.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.parallax.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
-    <script src="Content/rev-slider/js/extensions/revolution.extension.video.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</body>
+
 </html>                               

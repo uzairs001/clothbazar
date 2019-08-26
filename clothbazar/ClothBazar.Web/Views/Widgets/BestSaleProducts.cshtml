@@ -9,7 +9,7 @@
                 </div>
                 <ul class="flat-filter style-1 text-center max-width-682 clearfix">
                     <li class="active"><a href="#" data-filter="*">All Product</a></li>
-                    @foreach (var item in Model.products.Select(x=>x.Category).ToList().Distinct())
+                    @foreach (var item in Model.products.Select(x => x.Category).ToList().Distinct())
                     {
                         <li><a href="#" data-filter=".@item.Name.ToLower()">For @item.Name</a></li>
                     }
@@ -53,8 +53,8 @@
                                 <a href="#" class="like"><i class="fa fa-heart-o"></i></a>
                             </li>
                         }
-                      
-                  
+
+
                     </ul>
                 </div>
             </div>
@@ -62,4 +62,3 @@
     </div>
 </section>
 <!-- END PRODUCT -->
-

@@ -135,5 +135,57 @@ namespace ClothBazar.Services
                 context.SaveChanges();
             }
         }
+
+
+
+
+
+       public List<Product> ProductsForShopPage(string searchTerm, int? maximumPrice, int? minimumPrice, int? CategoryID,int? sortBy)
+       {
+           using (var context = new CBContext())
+           {
+               var products = context.Products.ToList();
+               if (CategoryID.HasValue)
+               {
+                  products =  products.Where(x => x.Category.ID == CategoryID.Value).ToList();
+               }
+               if (maximumPrice.HasValue && minimumPrice.HasValue)
+               {
+                   products = products.Where(x => x.Price >= minimumPrice && x.Price <= maximumPrice).OrderBy(x=>x.Price).ToList();
+               }
+               
+               if (!string.IsNullOrEmpty(searchTerm))
+               {
+                  products =  products.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+               }
+               if(sortBy.HasValue)
+               {
+                   switch (sortBy)
+                   {
+                       case 2: products = products.OrderByDescending(x=>x.ID).ToList();
+                           break;
+                       case 3: products = products.OrderBy(x => x.Price).ToList();
+                           break;
+                       case 4: products = products.OrderByDescending(x => x.Price).ToList();
+                           break;
+                       default: products = products.OrderByDescending(x => x.ID).ToList();
+                          break ;
+                   }
+               }
+               return products;
+           }
+          
+       }
+
+       public decimal GetMaxPrice()
+       {
+           using (var context = new CBContext())
+           {
+               return context.Products.Max(x=>x.Price);
+
+           }
+       }
+
+     
     }
 }

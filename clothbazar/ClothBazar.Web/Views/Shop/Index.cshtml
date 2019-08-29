@@ -44,21 +44,11 @@
                   
                       
                         <ul>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Default?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.Default})">Default-Newness</a></li>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Popularity?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.Popularity})">Popularity</a></li>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceLowToHigh?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.PriceLowToHigh})">Price: low to high</a></li>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceHighToLow?"active":string.Empty:string.Empty)" href="@Url.Action("Index","Shop",new {sortBy = (int)SortByEnum.PriceHighToLow})">Price: high to low</a></li>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Default?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.Default, CategoryID = Model.CatID})">Default-Newness</a></li>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Popularity?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.Popularity, CategoryID = Model.CatID })">Popularity</a></li>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceLowToHigh?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.PriceLowToHigh, CategoryID = Model.CatID })">Price: low to high</a></li>
+                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceHighToLow?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.PriceHighToLow, CategoryID = Model.CatID })">Price: high to low</a></li>
                         </ul>
-                    </div><!-- /.widget-sort-by -->
-
-                    <div class="widget widget-price">
-                        <h5 class="widget-title">Filter by price</h5>
-                        <div class="price-filter">
-                            <div id="slide-range"></div>
-                            <p class="amount">
-                                Price: <input type="text" id="amount" disabled="">
-                            </p>
-                        </div>
                     </div>
                     <div class="widget widget_tag">
                         <h5 class="widget-title">
@@ -77,10 +67,21 @@
                             {
 
                                 var catIDActive = (item.ID == Model.CatID) ? "active" : string.Empty;
-                                <a class="@catIDActive" href="@Url.Action("Index", "Shop", new { CategoryID = item.ID })">@item.Name</a>
+                                <a class="@catIDActive" href="@Url.Action("Index", "Shop", new { CategoryID = item.ID, sortBy = Model.sortByNumber })">@item.Name</a>
 
 
                             }
+                        </div>
+                        <!-- /.widget-sort-by -->
+
+                        <div class="widget widget-price">
+                            <h5 class="widget-title">Filter by price</h5>
+                            <div class="price-filter">
+                                <div id="slide-range"></div>
+                                <p class="amount">
+                                    Price: <input type="text" id="amount" disabled="">
+                                </p>
+                            </div>
                         </div>
                     </div><!-- /.widget -->
                 </div><!-- /.sidebar -->
@@ -135,6 +136,8 @@
                
                 url: "/Shop/FilterProduct",
                 data: {
+                    sortBy:'@Model.sortByNumber',
+                    CategoryID:'@Model.CatID',
                     filteredminimumPrice:priceSlider.slider("values",0),
                     filteredmaximumPrice:priceSlider.slider("values",1)
                 }

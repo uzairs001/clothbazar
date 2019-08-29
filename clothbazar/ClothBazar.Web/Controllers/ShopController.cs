@@ -8,6 +8,7 @@ using ClothBazar.Web.ViewModels;
 using ClothBazar.Entity;
 namespace ClothBazar.Web.Controllers
 {
+    [Authorize]
     public class ShopController : Controller
     {
 

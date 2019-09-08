@@ -13,15 +13,18 @@ namespace ClothBazar.Web.ViewModels
         public int? CatID { get; set; }
         public int? sortByNumber { get; set; }
         public decimal maxPrice { get; set; }
-       
-       
+        public Pager pager { get; set; }
+        public int pageSize { get; set; }
+
+        public string searchTerm { get; set; }
     }
 
     public class SliderFilterProductViewModel
     {
         public List<Product> filterProduct { get; set; }
-
-
+        public Pager pager { get; set; }
+        public int? SortBy { get; set; }
+        public int? CategoryID { get; set; }      
     }
 
 }

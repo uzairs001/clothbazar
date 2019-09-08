@@ -10,5 +10,7 @@ namespace ClothBazar.Web.ViewModels
     {
         public List<Product> Products { get; set; }
         public int pageNo { get; set; }
+        public Pager pager { get; set; }
+        public string searchTerm { get; set; }
     }
 }

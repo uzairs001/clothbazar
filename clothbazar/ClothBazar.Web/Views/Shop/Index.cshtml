@@ -29,7 +29,7 @@
                     <div class="widget widget-search">
                         <form role="search" method="get" class="search-form" action="@Url.Action("Index", "Shop")">
                             <label>
-                                <input type="search" class="search-field" placeholder="Search …" value="" name="searchTerm">
+                                <input type="search" class="search-field" placeholder="Search …" value="@Model.searchTerm" name="searchTerm">
                             </label>
                             <input type="submit" class="search-submit" value="Search">
                         </form>
@@ -44,10 +44,10 @@
                   
                       
                         <ul>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Default?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.Default, CategoryID = Model.CatID})">Default-Newness</a></li>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Popularity?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.Popularity, CategoryID = Model.CatID })">Popularity</a></li>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceLowToHigh?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.PriceLowToHigh, CategoryID = Model.CatID })">Price: low to high</a></li>
-                            <li><a class="@(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceHighToLow?"active":string.Empty:string.Empty)" href="@Url.Action("Index", "Shop", new { sortBy = (int)SortByEnum.PriceHighToLow, CategoryID = Model.CatID })">Price: high to low</a></li>
+                            <li><a class="dataLink @(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Default?"active":string.Empty:string.Empty)" data-href="@Url.Action("FilterProduct", "Shop", new { sortBy = (int)SortByEnum.Default, CategoryID = Model.CatID})">Default-Newness</a></li>
+                            <li><a class="dataLink @(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.Popularity?"active":string.Empty:string.Empty)" data-href="@Url.Action("FilterProduct", "Shop", new { sortBy = (int)SortByEnum.Popularity, CategoryID = Model.CatID })">Popularity</a></li>
+                            <li><a class="dataLink @(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceLowToHigh?"active":string.Empty:string.Empty)" data-href="@Url.Action("FilterProduct", "Shop", new { sortBy = (int)SortByEnum.PriceLowToHigh, CategoryID = Model.CatID })">Price: low to high</a></li>
+                            <li><a class="dataLink @(Model.sortByNumber.HasValue?Model.sortByNumber==(int)SortByEnum.PriceHighToLow?"active":string.Empty:string.Empty)" data-href="@Url.Action("FilterProduct", "Shop", new { sortBy = (int)SortByEnum.PriceHighToLow, CategoryID = Model.CatID })">Price: high to low</a></li>
                         </ul>
                     </div>
                     <div class="widget widget_tag">
@@ -57,17 +57,17 @@
                    
                         <div class="tag-list">
                            
-                         @{
+                         @*@{
                              var isActiveed = !(@Model.CatID.HasValue) ? "active" : string.Empty;
-                            <a class="@isActiveed" href="@Url.Action("Index", "Shop")">All products</a>
-                        }  
+                            <a class="dataLink" data-href="@Url.Action("FilterProduct", "Shop", new { sortBy = Model.sortByNumber })">All products</a>
+                        }*@  
                             
                            
                             @foreach (var item in Model.categoryList)
                             {
 
-                                var catIDActive = (item.ID == Model.CatID) ? "active" : string.Empty;
-                                <a class="@catIDActive" href="@Url.Action("Index", "Shop", new { CategoryID = item.ID, sortBy = Model.sortByNumber })">@item.Name</a>
+                              
+                                <a class="dataLink" data-href="@Url.Action("FilterProduct", "Shop", new { CategoryID = item.ID, sortBy = Model.sortByNumber })">@item.Name</a>
 
 
                             }
@@ -83,26 +83,26 @@
                                 </p>
                             </div>
                         </div>
+                    <div> <a href="@Url.Action("Index", "Shop")"><button class="btn-danger">Reset Filter</button></a></div>
                     </div><!-- /.widget -->
                 </div><!-- /.sidebar -->
             </div><!-- /.col-md-3 -->
             <div class="col-md-9">
-           
+              
                 <div id="productDiv">
                     @{
                         var SliderFilterProductViewModel = new SliderFilterProductViewModel();
                         SliderFilterProductViewModel.filterProduct = Model.products;
-                        Html.RenderPartial("FilterProduct", SliderFilterProductViewModel);
+                        SliderFilterProductViewModel.pager = Model.pager;
+                        SliderFilterProductViewModel.CategoryID = Model.CatID;
+                        SliderFilterProductViewModel.SortBy = Model.sortByNumber;                 
+                        Html.RenderPartial("FilterProduct", SliderFilterProductViewModel);                 
                     }
                 </div>
-                <div class="filter-shop clearfix">
-                    <p class="showing-product float-right">
-                        Showing 1–12 of 56 Products
-                    </p>
-                </div><!-- /.filte-shop -->
+                
             </div><!-- /.col-md-9 -->
         </div><!-- /.row -->
-    </div><!-- /.container -->
+    @*</div><!-- /.container -->*@
 </section><!-- /.flat-row -->
 <script>
     var callTimeout;
@@ -118,8 +118,8 @@
             var maxPrice = ui.values[1];
             $("#amount").val("$" + minPrice + ".00" + " - " + "$" + maxPrice + ".00");
             clearTimeout(callTimeout);
-            callTimeout =  setTimeout(getMyData,500);
-
+           // callTimeout =  setTimeout(getMyData,500);
+            callTimeout = setTimeout(getMyData, 500);
           
         
          
@@ -127,7 +127,35 @@
         }
     });
 
-  
+ 
+    function PriceRangeChange(dUrl){
+        $.ajax({
+            url:dUrl ,
+            data: {
+                sortBy:$('#sortBy').val(),
+                categoryId:$('#categoryId').val(),
+                filteredminimumPrice : priceSlider.slider("values", 0),
+                filteredmaximumPrice : priceSlider.slider("values", 1)
+            }
+        })
+        .done(function (response) {
+            $("#productDiv").html(response);
+        })
+        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert("FAIL");
+        });
+    }
+
+
+    $('.dataLink').click(function () {
+       
+        var url = $(this).attr('data-href');
+        if (url != "" && url != undefined)
+        {
+            PriceRangeChange(url);
+        }
+        
+    });
 
     function getMyData(minPrice,maxPrice){
         {
@@ -136,8 +164,9 @@
                
                 url: "/Shop/FilterProduct",
                 data: {
-                    sortBy:'@Model.sortByNumber',
-                    CategoryID:'@Model.CatID',
+                    sortBy:$('#sortBy').val(),
+                    categoryId:$('#categoryId').val(),
+                   
                     filteredminimumPrice:priceSlider.slider("values",0),
                     filteredmaximumPrice:priceSlider.slider("values",1)
                 }

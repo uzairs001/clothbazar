@@ -3,8 +3,8 @@
     ViewBag.Title = "ProductTable";
 }
 
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+@*<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
 <div>
     <div class="form-group">
         <form method="post">
@@ -72,39 +72,57 @@
 
             </tbody>
         </table>
+   
     }
     else
     {
         <div>No Product Found</div>
     }
-   
-    @*<div>
-        @if (Model.pageNo != 1)
+    <div>
+        @if (Model.pager != null && Model.pager.TotalPages > 1)
         {
-            <button class="pageBtn" data-pageno="@(Model.pageNo-1)">PreviousPage</button>
+            if (Model.pager.CurrentPage > 1)
+            {
+                <button class="pageBtn" data-pageno="1">FirstPage</button>
+                <button class="pageBtn" data-pageno="@(Model.pager.CurrentPage-1)">PreviousPage</button>
+            }
+            for (var page = Model.pager.StartPage; page <= Model.pager.EndPage; page++)
+            {
+                var isActive = @Model.pager.CurrentPage == page ? "btn-info active" : string.Empty;
+                <button class="@isActive pageBtn" data-pageno="@page">@page</button>
+            }
+
+            if (Model.pager.CurrentPage < Model.pager.EndPage)
+            {
+                <button class="pageBtn" data-pageno="@(Model.pager.EndPage)">LastPage</button>
+                <button class="pageBtn" data-pageno="@(Model.pager.CurrentPage + 1)">NextPage</button>
+            }
+
         }
-       
-        <button class="pageBtn" data-pageNo="@(Model.pageNo+1)">NextPage</button>
-    </div>*@
+
+
+    </div>
+    
 </div>
 <div id="EditTable">
 
 </div>
 <script>
-    $('#productTables').DataTable();
+    //$('#productTables').DataTable();
     
     $(".pageBtn").click(function () {
        
         $.ajax({
             url: '@Url.Action("ProductTable","Product")',
             data: {
-                pageNo: $(this).attr('data-pageNo')
+                pageNo: $(this).attr('data-pageno'),
+                search:'@Model.searchTerm'
             }
 
 
         })
         .done(function (response) {
-            console.log(response);
+           
             $("#tableContainer").html(response);
         })
          .fail(function (XMLHttpRequest, textStatus, errorThrown) {

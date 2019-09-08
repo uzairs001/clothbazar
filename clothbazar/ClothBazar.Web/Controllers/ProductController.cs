@@ -24,14 +24,14 @@ namespace ClothBazar.Web.Controllers
             ProductSearchViewModel model = new ProductSearchViewModel();
             pageNo = (pageNo.HasValue) ? pageNo.Value > 0 ? pageNo : 1 : 1;
             model.pageNo = pageNo.Value;
+            model.searchTerm = search;
+            int totalRecords = ProductService.Instance.GetProductCountSolely(search);
+            int pageSize = 3;
+            
             //model.Products = ProductService.Instance.GetProduct(pageNo.Value);
-            model.Products = ProductService.Instance.GetProduct();
-            if (string.IsNullOrEmpty(search) == false && model.pageNo==1)
-            {
-                model.Products = ProductService.Instance.GetProduct();
-                model.Products = model.Products.Where(x => x.Name != null && x.Name.ToLower().Contains(search.ToLower())).ToList();
-
-            }
+            model.Products = ProductService.Instance.GetProduct(search, pageNo.Value, pageSize);
+          
+            model.pager = new Pager(totalRecords, pageNo, pageSize);
             return PartialView(model);
 
 
@@ -86,6 +86,8 @@ namespace ClothBazar.Web.Controllers
             model.Pdetails = ProductService.Instance.EditProduct(ID);
             return View(model);
         }
-      
+
+
+        
     }
 }

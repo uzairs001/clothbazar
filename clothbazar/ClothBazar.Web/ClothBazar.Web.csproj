@@ -181,6 +181,7 @@
     <Compile Include="ViewModels\ProductCount.cs" />
     <Compile Include="ViewModels\ProductDetails.cs" />
     <Compile Include="ViewModels\ProductSearchViewModel.cs" />
+    <Compile Include="ViewModels\SharedViewModel.cs" />
     <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="ViewModels\WidgetViewModel.cs" />
   </ItemGroup>

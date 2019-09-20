@@ -802,10 +802,14 @@
 
         activeLayout(); 
         activePattern();
-    }; 
-    
+
+      
+    };
+
+  
    	// Dom Ready
-	$(function() {
+    $(function () {
+
       removePreloader();
       goTop();
       parallax(); 
@@ -832,5 +836,20 @@
       flatIsotope();
       flatCarouselOwl();
       flatContentBox();
+      cartCount();
    	});
 })(jQuery);
+
+var products;
+function cartCount() {
+    
+    var existingCartProduct = $.cookie('myAddToCartCookie');
+    if (existingCartProduct != "" && existingCartProduct != undefined && existingCartProduct != null)
+    {
+        products = existingCartProduct.split('-');
+    }
+    else {
+        products = [];
+    }
+    $('#cartProductCount').html(products.length);
+}

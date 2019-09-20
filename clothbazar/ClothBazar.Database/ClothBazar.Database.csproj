@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201908081208570_asdwasd.Designer.cs">
       <DependentUpon>201908081208570_asdwasd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909151746563_ordersAndOrderitemsTableIsAdded.cs" />
+    <Compile Include="Migrations\201909151746563_ordersAndOrderitemsTableIsAdded.Designer.cs">
+      <DependentUpon>201909151746563_ordersAndOrderitemsTableIsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -111,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908081208570_asdwasd.resx">
       <DependentUpon>201908081208570_asdwasd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909151746563_ordersAndOrderitemsTableIsAdded.resx">
+      <DependentUpon>201909151746563_ordersAndOrderitemsTableIsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

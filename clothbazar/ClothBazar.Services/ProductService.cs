@@ -116,13 +116,13 @@ namespace ClothBazar.Services
 
         public Product EditProduct(int ID)
         {
-            var context = new CBContext();
-            return context.Products.Find(ID);
-            //using (var context = new CBContext())
-            //{
-            //    return context.Products.Find(ID);
+            //var context = new CBContext();
+            //return context.Products.Find(ID);
+            using (var context = new CBContext())
+            {
+                return context.Products.Find(ID);
 
-            //}
+            }
         }
 
         public void UpdateProduct(Product product)

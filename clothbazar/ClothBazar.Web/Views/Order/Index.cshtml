@@ -1,0 +1,123 @@
+﻿@model OrdersViewModel
+@{
+    ViewBag.Title = "OrderList";
+}
+
+@*<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>*@
+<div class="container">
+    <div>
+        <div class="form-group">
+           @*<form method="post">
+
+
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <input placeholder="search" class="form-control" id="searchTxt" value="@Model.UserID"  />
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit">Search</button>
+                        <a  href="@Url.Action("Index", "Order", new { pageNo = 1 })">Reset</a>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </form>*@ 
+
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label>Search</label>
+                            <input class="form-control" id="searchTxt" name="UserID" value="@Model.UserID" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Action</label>
+                            <div class="row">
+                                <div class="col-md-4 pr-0">
+                                    <button class="btn btn-primary form-control" type="submit" id="searchBtn">Search</button>
+                                </div>
+                                <div class="col-md-4 pr-0">
+                                    <a class="btn btn-primary form-control" type="button" id="resetBtn" href="@Url.Action("Index", "Order", new { pageNo = 1 })">Reset</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <h2>ProductTable</h2>
+        @if (Model.order != null && Model.order.Count > 0)
+        {
+            <table id="productTables" class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>UserID</td>
+                        <td>Total Ammount</td>
+                        <td>Status</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.order)
+                    {
+                        <tr>
+                            <td>@item.userID</td>
+                            <td>
+                                @item.totalAmount
+                            </td>
+                            <td>@item.status</td>
+
+                            <td>
+                                <a type="button" class="btn btn-primary form-control" data-id="@item.ID" href="@Url.Action("Details", "Order", new { ID = item.ID })">Details</a>
+
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        }
+        else
+        {
+            <div>No Product Found</div>
+        }
+        <div>
+            @if (Model.pager != null && Model.pager.TotalPages > 1)
+            {
+                if (Model.pager.CurrentPage > 1)
+                {
+                    <a class="btn btn-primary pageBtn" data-pageno="1" href="@Url.Action("Index", "Order", new { pageNo = 1 })">FirstPage</a>
+    <a class="btn btn-primary pageBtn" data-pageno="@(Model.pager.CurrentPage-1)" href="@Url.Action("Index", "Order", new { pageNo = Model.pager.CurrentPage-1 })">PreviousPage</a>
+                }
+                for (var page = Model.pager.StartPage; page <= Model.pager.EndPage; page++)
+                {
+                    var isActive = @Model.pager.CurrentPage == page ? "btn-info active" : string.Empty;
+                    <a class="@isActive btn btn-primary pageBtn" data-pageno="@page" href="@Url.Action("Index", "Order", new { pageNo = page })">@page</a>
+                }
+
+                if (Model.pager.CurrentPage < Model.pager.EndPage)
+                {
+                    <a class="btn btn-primary pageBtn" data-pageno="@(Model.pager.EndPage)" href="@Url.Action("Index", "Order", new { pageNo = Model.pager.EndPage })">LastPage</a>
+    <a class="btn btn-primary pageBtn" data-pageno="@(Model.pager.CurrentPage + 1)" href="@Url.Action("Index", "Order", new { pageNo = Model.pager.CurrentPage+1 })">NextPage</a>
+                }
+
+            }
+
+
+        </div>
+
+    </div>
+</div>
+
+

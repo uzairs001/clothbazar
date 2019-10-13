@@ -13,7 +13,7 @@ namespace ClothBazar.Entity
         public string userID { get; set; }
         public DateTime dateTime { get; set; }
         public string status { get; set; }
-        public List<OrderItems> orderItems { get; set; }
+        public virtual List<OrderItems> orderItems { get; set; }
         public decimal totalAmount { get; set; }
     }
 }

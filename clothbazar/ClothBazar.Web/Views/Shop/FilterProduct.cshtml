@@ -9,6 +9,7 @@
 
     <div class="product-content product-threecolumn product-slidebar clearfix">
         <ul class="product style2 sd1">
+        
             @foreach (var item in Model.filterProduct)
             {
                 <li class="product-item">
@@ -33,7 +34,7 @@
                 </li>
 
             }
-
+        
 
         </ul><!-- /.product -->
     </div><!-- /.product-content -->
@@ -66,7 +67,7 @@
 
         </ul><!-- /.flat-pagination -->
     </div>
-</div>
+
 <input type="hidden" id="sortBy" value="@Model.SortBy"/>
 <input type="hidden" id="categoryId" value="@Model.CategoryID" />
 <script>

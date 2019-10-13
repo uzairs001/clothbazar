@@ -163,6 +163,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -186,7 +187,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\CheckOutViewModel.cs" />
+    <Compile Include="ViewModels\DetailViewModal.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="ViewModels\ProductCount.cs" />
     <Compile Include="ViewModels\ProductDetails.cs" />
     <Compile Include="ViewModels\ProductSearchViewModel.cs" />
@@ -196,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\icon\favicon.png" />
     <Content Include="Content\images\avatar-1.png" />
     <Content Include="Content\images\avatar.png" />
@@ -482,7 +486,6 @@
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
     <Content Include="Content\images\.DS_Store" />
     <Content Include="Content\images\shop\.DS_Store" />
@@ -491,6 +494,7 @@
     <Content Include="Content\rev-slider\fonts\revicons\revicons90c6.eot" />
     <Content Include="Content\rev-slider\fonts\revicons\revicons90c6.ttf" />
     <Content Include="Content\rev-slider\fonts\revicons\revicons90c6.woff" />
+    <None Include="Properties\PublishProfiles\Somee.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -556,6 +560,8 @@
     <Content Include="Views\Widgets\RelatedProducts.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Shop\FilterProduct.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

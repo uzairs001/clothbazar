@@ -809,7 +809,7 @@
   
    	// Dom Ready
     $(function () {
-
+        
       removePreloader();
       goTop();
       parallax(); 
@@ -839,6 +839,8 @@
       cartCount();
    	});
 })(jQuery);
+
+
 
 var products;
 function cartCount() {

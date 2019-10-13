@@ -1,6 +1,7 @@
 ﻿@using ClothBazar.Web.ViewModels;
 @using ClothBazar.Web.Code;
 @model FilterProductViewModel
+@{ViewBag.Title = "Shop";}
 <!-- Page title -->
 <div class="page-title parallax parallax1">
     <div class="container">
@@ -88,23 +89,29 @@
                 </div><!-- /.sidebar -->
             </div><!-- /.col-md-3 -->
             <div class="col-md-9">
-              
+               
                 <div id="productDiv">
                     @{
                         var SliderFilterProductViewModel = new SliderFilterProductViewModel();
                         SliderFilterProductViewModel.filterProduct = Model.products;
                         SliderFilterProductViewModel.pager = Model.pager;
                         SliderFilterProductViewModel.CategoryID = Model.CatID;
-                        SliderFilterProductViewModel.SortBy = Model.sortByNumber;                 
-                        Html.RenderPartial("FilterProduct", SliderFilterProductViewModel);                 
+                        SliderFilterProductViewModel.SortBy = Model.sortByNumber;
+                        Html.RenderPartial("FilterProduct", SliderFilterProductViewModel);
                     }
+
                 </div>
+
                 
             </div><!-- /.col-md-9 -->
         </div><!-- /.row -->
     @*</div><!-- /.container -->*@
 </section><!-- /.flat-row -->
+
 <script>
+    
+  
+    
     var callTimeout;
     var priceSlider = $("#slide-range").slider({
         
@@ -129,6 +136,7 @@
 
  
     function PriceRangeChange(dUrl){
+       
         $.ajax({
             url:dUrl ,
             data: {
@@ -140,6 +148,7 @@
         })
         .done(function (response) {
             $("#productDiv").html(response);
+          
         })
         .fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert("FAIL");
@@ -152,37 +161,39 @@
         var url = $(this).attr('data-href');
         if (url != "" && url != undefined)
         {
+            
             PriceRangeChange(url);
-        }
+            
         
-    });
+        
+        }});
 
-    function getMyData(minPrice,maxPrice){
-        {
-            console.log("getMyDataCalled");
-            $.ajax({
+        function getMyData(minPrice,maxPrice){
+            {
+                console.log("getMyDataCalled");
+                $.ajax({
                
-                url: "/Shop/FilterProduct",
-                data: {
-                    sortBy:$('#sortBy').val(),
-                    categoryId:$('#categoryId').val(),
+                    url: "/Shop/FilterProduct",
+                    data: {
+                        sortBy:$('#sortBy').val(),
+                        categoryId:$('#categoryId').val(),
                    
-                    filteredminimumPrice:priceSlider.slider("values",0),
-                    filteredmaximumPrice:priceSlider.slider("values",1)
-                }
+                        filteredminimumPrice:priceSlider.slider("values",0),
+                        filteredmaximumPrice:priceSlider.slider("values",1)
+                    }
+
+                })
+            .done(function (response) {
+         
+                $("#productDiv").html(response);
 
             })
-        .done(function (response) {
-         
-            $("#productDiv").html(response);
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
 
-        })
-        .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-
-        });
+            });
+            }
         }
-    }
 
 
-              
+    
 </script>
